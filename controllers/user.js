@@ -4,7 +4,7 @@ import BadRequestError from "../Errors/BadRequestError.js";
 import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js"
 import jwt from "jsonwebtoken";
-// import token
+import Token from "../models/authToken.js"
 import dotenv from "dotenv";
 dotenv.config();
 import bcryt from 'bcrypt';
@@ -42,7 +42,7 @@ const signUp = asyncWrapper (async (req, res, next) => {
     });
 
     const savedUser = await newUser.save();
-    sendEmail(req.body/email, "Verify your account", `Your otp is ${otp}`);
+    sendEmail(req.body.email, "Verify your account", `Your otp is ${otp}`);
     if(savedUser) {
         return res.status(201).json({
             message: "user account created!",
