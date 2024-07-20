@@ -15,7 +15,7 @@ const addCategory = asyncWrapper(async (req, res, next) =>{
 
 const getCategories = asyncWrapper(async (req, res, next) =>{
     const categories = await categoryModel.find({});
-    if(houses){
+    if(categories){
         return res.status(201).json({
             nbHits: categories.length,
             categories
@@ -25,7 +25,7 @@ const getCategories = asyncWrapper(async (req, res, next) =>{
 
 const findByCategory = asyncWrapper(async (req, res, next) =>{
     const categoryId = req.params.category
-    const foundCategory = await categoryModel.findByCategory(categoryId);
+    const foundCategory = await categoryModel.findById(categoryId);
     if(!foundCategory){
         return next(new NotFoundError('category not found'));
     }
