@@ -44,3 +44,5 @@ const shippingSchema = new mongoose.Schema({
         required: true
     }
 });
+const shippingModel = mongoose.model('shipping', shippingSchema);
+export default shippingModel;
